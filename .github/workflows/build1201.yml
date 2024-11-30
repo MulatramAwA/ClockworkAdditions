@@ -32,7 +32,7 @@ jobs:
         run: chmod +x ./gradlew
 
       - name: Build
-        run: ./gradlew clean build --info
+        run: ./gradlew clean build
 
       - name: mergeJars
         run: ./gradlew mergeJars
