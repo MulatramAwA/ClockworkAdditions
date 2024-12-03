@@ -1,7 +1,9 @@
 package com.github.guyapooye.clockworkadditions;
 
 import com.github.guyapooye.clockworkadditions.registries.*;
+import com.github.guyapooye.clockworkadditions.util.PlatformUtil;
 import com.simibubi.create.foundation.data.CreateRegistrate;
+import net.fabricmc.api.EnvType;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.CreativeModeTab;
@@ -17,7 +19,7 @@ public class ClockworkAdditions
 	public static CreativeModeTab getCreativeModeTab() {
 		return CWACreativeModeTab;
 	}
-	public static CreativeModeTab CWACreativeModeTab = CreativeModeTab.builder(CreativeModeTab.Row.TOP, 0).title(Component.translatable("itemGroup.clockworkadditions")).icon(BlockRegistry.KINETIC_FLAP_BEARING::asStack).displayItems(ClockworkAdditions::allItems).build();
+	public static final CreativeModeTab CWACreativeModeTab = CreativeModeTab.builder(CreativeModeTab.Row.TOP, 0).title(Component.translatable("itemGroup.clockworkadditions")).icon(BlockRegistry.KINETIC_FLAP_BEARING::asStack).displayItems(ClockworkAdditions::allItems).build();
 	private static void allItems(CreativeModeTab.ItemDisplayParameters var0, CreativeModeTab.Output output) {
 		output.accept(BlockRegistry.HANDLEBAR);
 		output.accept(BlockRegistry.PEDALS);
@@ -28,7 +30,7 @@ public class ClockworkAdditions
 		output.accept(BlockRegistry.INVERTED_RESISTOR);
 	}
 	public static void init() {
-		PartialModelRegistry.register();
+		PlatformUtil.runWhenOn(EnvType.CLIENT, ClockworkAdditionsClient::init);
 		BlockRegistry.register();
 		EntityRegistry.register();
 		BlockEntityRegistry.register();
