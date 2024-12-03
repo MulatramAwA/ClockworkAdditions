@@ -24,6 +24,7 @@ public class BuilderTransformersImpl extends BuilderTransformers {
                 .transform(BlockStressDefaults.setNoImpact())
                 .loot((p, lb) -> p.dropOther(lb, drop.get()));
     }
+    @SuppressWarnings("removal")
     public static <B extends Block, P> NonNullUnaryOperator<BlockBuilder<B, P>> copycat() {
         return b -> b.initialProperties(SharedProperties::softMetal)
                 .blockstate((c, p) -> p.simpleBlock(c.get(), p.models()
