@@ -1,9 +1,10 @@
 package com.github.guyapooye.clockworkadditions;
 
 import com.github.guyapooye.clockworkadditions.registries.*;
-import com.github.guyapooye.clockworkadditions.util.NumberUtil;
+import com.github.guyapooye.clockworkadditions.util.PlatformUtil;
 import com.simibubi.create.foundation.data.CreateRegistrate;
 import dev.architectury.injectables.annotations.ExpectPlatform;
+import net.fabricmc.api.EnvType;
 import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.CreativeModeTab;
@@ -19,7 +20,7 @@ public class ClockworkAdditions
 	public static CreativeModeTab CWACreativeModeTab = registerCreativeModeTab();
 
 	public static void init() {
-		PartialModelRegistry.register();
+		PlatformUtil.runWhenOn(EnvType.CLIENT, ClockworkAdditionsClient::init);
 		BlockRegistry.register();
 		EntityRegistry.register();
 		BlockEntityRegistry.register();
