@@ -2,6 +2,8 @@ package com.github.guyapooye.clockworkadditions;
 
 import com.github.guyapooye.clockworkadditions.registries.ConfigRegistryImpl;
 import com.github.guyapooye.clockworkadditions.registries.events.ClientEventRegistry;
+import com.github.guyapooye.clockworkadditions.util.fabric.PlatformUtilImpl;
+import net.fabricmc.api.EnvType;
 import net.fabricmc.api.ModInitializer;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -16,8 +18,13 @@ public class ClockworkAdditionsFabric implements ModInitializer {
     public void onInitialize() {
         Registry.register(BuiltInRegistries.CREATIVE_MODE_TAB, ResourceKey.create(Registries.CREATIVE_MODE_TAB, new ResourceLocation("clockworkadditions")), CWACreativeModeTab);
         ClockworkAdditions.init();
+        PlatformUtilImpl.runWhenOn(EnvType.CLIENT, this::initClient);
         ConfigRegistryImpl.register();
-        ClientEventRegistry.register();
         REGISTRATE.register();
+    }
+
+    public void initClient() {
+        ClientEventRegistry.register();
+        ClockworkAdditionsCLient.init();
     }
 }

@@ -16,9 +16,6 @@ public class ClockworkAdditions
 
 	public static final CreateRegistrate REGISTRATE = CreateRegistrate.create(MOD_ID);
 
-	public static CreativeModeTab getCreativeModeTab() {
-		return CWACreativeModeTab;
-	}
 	public static final CreativeModeTab CWACreativeModeTab = CreativeModeTab.builder(CreativeModeTab.Row.TOP, 0).title(Component.translatable("itemGroup.clockworkadditions")).icon(BlockRegistry.KINETIC_FLAP_BEARING::asStack).displayItems(ClockworkAdditions::allItems).build();
 	private static void allItems(CreativeModeTab.ItemDisplayParameters var0, CreativeModeTab.Output output) {
 		output.accept(BlockRegistry.HANDLEBAR);
@@ -30,7 +27,7 @@ public class ClockworkAdditions
 		output.accept(BlockRegistry.INVERTED_RESISTOR);
 	}
 	public static void init() {
-		PlatformUtil.runWhenOn(EnvType.CLIENT, ClockworkAdditionsClient::init);
+		PlatformUtil.runWhenOn(EnvType.CLIENT, ClockworkAdditionsCLient::init);
 		BlockRegistry.register();
 		EntityRegistry.register();
 		BlockEntityRegistry.register();
@@ -43,5 +40,9 @@ public class ClockworkAdditions
 	}
 	public static Component asTranslatable(String translatable) {
 		return Component.translatable(translatable);
+	}
+
+	public static class ClockworkAdditionsCLient {
+		public static void init() {}
 	}
 }
