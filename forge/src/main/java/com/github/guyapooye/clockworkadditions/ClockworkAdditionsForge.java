@@ -4,8 +4,10 @@ import com.github.guyapooye.clockworkadditions.registries.forge.BlockRegistryImp
 import com.github.guyapooye.clockworkadditions.registries.ConfigRegistryImpl;
 import com.github.guyapooye.clockworkadditions.registries.forge.EntityRegistryImpl;
 import com.github.guyapooye.clockworkadditions.registries.BlockRegistry;
+import com.github.guyapooye.clockworkadditions.util.forge.PlatformUtilImpl;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.ItemStack;
+import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
@@ -15,24 +17,18 @@ import static com.github.guyapooye.clockworkadditions.ClockworkAdditions.*;
 
 @Mod(MOD_ID)
 public class ClockworkAdditionsForge {
-    private void initializeCreativeModeTab() {
-        CWACreativeModeTab = new CreativeModeTab(MOD_ID) {
-            @Override
-            public ItemStack makeIcon() {
-                return BlockRegistry.KINETIC_FLAP_BEARING.asStack();
-            }
-        };
-    }
     public ClockworkAdditionsForge() {
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
         REGISTRATE.registerEventListeners(modEventBus);
 
         ClockworkAdditions.init();
+        PlatformUtilImpl.runWhenOn(Dist.CLIENT, this::initClient);
 
         ModLoadingContext modLoadingContext = ModLoadingContext.get();
         ConfigRegistryImpl.register(modLoadingContext);
 
-        initializeCreativeModeTab();
         BlockRegistryImpl.register();
     }
+
+    private void initClient() {}
 }

@@ -5,6 +5,7 @@ import com.github.guyapooye.clockworkadditions.util.PlatformUtil;
 import com.simibubi.create.foundation.data.CreateRegistrate;
 import dev.architectury.injectables.annotations.ExpectPlatform;
 import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.CreativeModeTab;
@@ -17,10 +18,9 @@ public class ClockworkAdditions
 
 	public static final CreateRegistrate REGISTRATE = CreateRegistrate.create(MOD_ID);
 
-	public static CreativeModeTab CWACreativeModeTab = registerCreativeModeTab();
+	public static final CreativeModeTab CWACreativeModeTab = registerCreativeModeTab();
 
 	public static void init() {
-		PlatformUtil.runWhenOn(EnvType.CLIENT, ClockworkAdditionsClient::init);
 		BlockRegistry.register();
 		EntityRegistry.register();
 		BlockEntityRegistry.register();
@@ -36,5 +36,12 @@ public class ClockworkAdditions
 	@ExpectPlatform
 	public static CreativeModeTab registerCreativeModeTab() {
 		throw new AssertionError();
+	}
+
+	@Environment(EnvType.CLIENT)
+	public static class ClockworkAdditionsClient {
+		public static void init() {
+			PartialModelRegistry.register();
+		}
 	}
 }
