@@ -23,12 +23,14 @@ public class ClockworkAdditionsForge {
         TAB_REGISTER.register("general", () -> CWACreativeModeTab);
         TAB_REGISTER.register(modEventBus);
 
-        ClockworkAdditions.init();
         PlatformUtilImpl.runWhenOn(Dist.CLIENT, this::initClient);
+        ClockworkAdditions.init();
 
         ModLoadingContext modLoadingContext = ModLoadingContext.get();
         ConfigRegistryImpl.register(modLoadingContext);
     }
 
-    private void initClient() {}
+    private void initClient() {
+        ClockworkAdditionsClient.init();
+    }
 }

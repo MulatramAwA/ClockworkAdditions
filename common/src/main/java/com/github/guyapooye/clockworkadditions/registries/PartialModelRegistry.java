@@ -4,7 +4,7 @@ import com.github.guyapooye.clockworkadditions.ClockworkAdditions;
 import com.jozufozu.flywheel.core.PartialModel;
 
 public class PartialModelRegistry {
-    public static PartialModel BEARING_TOP = new PartialModel(ClockworkAdditions.asResource("block/kinetic_flap_bearing/top")),
+    public static final PartialModel BEARING_TOP = new PartialModel(ClockworkAdditions.asResource("block/kinetic_flap_bearing/top")),
                                PEDALS_BASE = new PartialModel(ClockworkAdditions.asResource("block/mechanical_pedals/block")),
                                PEDALS_CRANK = new PartialModel(ClockworkAdditions.asResource("block/mechanical_pedals/crank")),
                                PEDAL_LEFT = new PartialModel(ClockworkAdditions.asResource("block/mechanical_pedals/pedal_left")),

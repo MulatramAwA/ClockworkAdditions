@@ -24,7 +24,7 @@ public class ClockworkAdditionsFabric implements ModInitializer {
     }
 
     public void initClient() {
+        ClockworkAdditionsClient.init();
         ClientEventRegistry.register();
-        ClockworkAdditionsCLient.init();
     }
 }

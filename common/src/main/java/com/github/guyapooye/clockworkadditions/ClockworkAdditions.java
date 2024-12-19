@@ -27,7 +27,6 @@ public class ClockworkAdditions
 		output.accept(BlockRegistry.INVERTED_RESISTOR);
 	}
 	public static void init() {
-		PlatformUtil.runWhenOn(EnvType.CLIENT, ClockworkAdditionsCLient::init);
 		BlockRegistry.register();
 		EntityRegistry.register();
 		BlockEntityRegistry.register();
@@ -42,7 +41,7 @@ public class ClockworkAdditions
 		return Component.translatable(translatable);
 	}
 
-	public static class ClockworkAdditionsCLient {
+	public static class ClockworkAdditionsClient {
 		public static void init() {}
 	}
 }
