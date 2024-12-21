@@ -17,8 +17,8 @@ public class ClockworkAdditionsFabric implements ModInitializer {
     @Override
     public void onInitialize() {
         Registry.register(BuiltInRegistries.CREATIVE_MODE_TAB, ResourceKey.create(Registries.CREATIVE_MODE_TAB, new ResourceLocation("clockworkadditions")), CWACreativeModeTab);
-        ClockworkAdditions.init();
         PlatformUtilImpl.runWhenOn(EnvType.CLIENT, this::initClient);
+        ClockworkAdditions.init();
         ConfigRegistryImpl.register();
         REGISTRATE.register();
     }

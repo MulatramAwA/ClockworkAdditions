@@ -42,6 +42,8 @@ public class ClockworkAdditions
 	}
 
 	public static class ClockworkAdditionsClient {
-		public static void init() {}
+		public static void init() {
+			PartialModelRegistry.register();
+		}
 	}
 }
